@@ -35,13 +35,12 @@ public class FirstController
    }
 
    @RequestMapping("/get")
-   public @ResponseBody String getPoints(Model model)
+   public @ResponseBody String getPoints()
    {
       Session session = sessionFactory.openSession();
       Transaction trans = session.beginTransaction();
       Query q = session.createQuery("from Point");
       List vals = q.list();
-      model.addAttribute("values", vals);
       trans.commit();
       session.close();
       return String.valueOf(vals.size());
